@@ -1,3 +1,5 @@
+/* CodeVent Node.js - course content */
+
 const COURSE = {
   "title": "CodeVent Node.js",
   "tagline": "Node.js from the runtime fundamentals to a complete REST API, built with Express and MongoDB.",

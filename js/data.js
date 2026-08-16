@@ -801,3 +801,7 @@ const COURSE = {
     }
   ]
 };
+
+if (typeof window !== "undefined") {
+  window.COURSE = COURSE;
+}

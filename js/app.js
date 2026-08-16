@@ -5,6 +5,16 @@ const LAST_KEY = "codevent_node_last_v1";
 const ACCESS_TOKEN_KEY = "codevent_nodejs_access_token";
 const WORKER_URL = "https://codevent-nodejs-course.emezch93.workers.dev";
 
+function getCourseData() {
+  if (!window.COURSE || !Array.isArray(window.COURSE.modules)) {
+    throw new Error("Course data failed to load. Check that js/data.js is published before js/app.js.");
+  }
+
+  return window.COURSE;
+}
+
+const courseData = getCourseData();
+
 function renderAuthState(html) {
   const content = document.getElementById("content");
   const sidebar = document.getElementById("sidebar");
@@ -138,7 +148,7 @@ async function initAuth() {
 
 /* ---------- Flatten course into a linear sequence for prev/next + progress ---------- */
 const SEQUENCE = [];
-COURSE.modules.forEach((mod) => {
+courseData.modules.forEach((mod) => {
   (mod.lessons || []).forEach((lesson) => {
     SEQUENCE.push({ type: "lesson", moduleId: mod.id, id: lesson.id, title: lesson.title, data: lesson });
   });
@@ -257,14 +267,14 @@ function attachCopyHandlers(root) {
 }
 
 function moduleOf(moduleId) {
-  return COURSE.modules.find((m) => m.id === moduleId);
+  return courseData.modules.find((m) => m.id === moduleId);
 }
 
 /* ---------- Sidebar ---------- */
 function renderSidebar() {
   const completed = getCompleted();
   const active = currentId();
-  const modulesHtml = COURSE.modules
+  const modulesHtml = courseData.modules
     .map((mod, idx) => {
       const items = [];
       (mod.lessons || []).forEach((l) => items.push({ id: l.id, title: l.title, done: completed.has(l.id) }));
@@ -518,7 +528,7 @@ function renderDashboard() {
   const continueEntry = lastEntry || SEQUENCE[0];
   const completed = getCompleted();
 
-  const moduleCards = COURSE.modules
+  const moduleCards = courseData.modules
     .map((mod, i) => {
       const items = [];
       (mod.lessons || []).forEach((l) => items.push(l.id));
@@ -546,7 +556,7 @@ function renderDashboard() {
   return `
     <div class="dashboard-head">
       <h1>CodeVent Web Development</h1>
-      <p class="dashboard-tagline">${escapeHtml(COURSE.tagline)}</p>
+      <p class="dashboard-tagline">${escapeHtml(courseData.tagline)}</p>
     </div>
 
     <div class="dashboard-stats">

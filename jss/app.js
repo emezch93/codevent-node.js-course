@@ -1,4 +1,3 @@
-
 const STORAGE_KEY = "codevent_node_progress_v1";
 const LAST_KEY = "codevent_node_last_v1";
 

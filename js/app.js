@@ -654,4 +654,3 @@ function startApp() {
 document.addEventListener("DOMContentLoaded", () => {
   initAuth();
 });
-localStorage.clear()

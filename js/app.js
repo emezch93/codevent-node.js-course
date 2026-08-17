@@ -314,6 +314,16 @@ function renderSidebar() {
       <div class="progress-track"><div class="progress-fill" style="width:${progressPercent()}%"></div></div>
     </div>
     <nav class="nav-modules">${modulesHtml}</nav>
+    <div class="sidebar-help">
+      <a href="https://codeventdigital.site/chat.html" target="_blank" class="ai-help-link">
+        <span class="ai-help-icon">AI</span>
+        <span>Stuck? Ask the CodeVent AI Tutor</span>
+      </a>
+      <a href="https://codeventdigital.site/code-editor.html" target="_blank" class="ai-help-link">
+        <span class="ai-help-icon mono">&lt;/&gt;</span>
+        <span>Open the Code Editor</span>
+      </a>
+    </div>
     <div class="sidebar-footer">
       <a href="about.html" target="_self">About</a>
       <a href="contact.html" target="_self">Contact</a>
